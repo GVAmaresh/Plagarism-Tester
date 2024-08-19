@@ -9,15 +9,15 @@ from google.oauth2 import service_account
 
 SCOPES = ['https://www.googleapis.com/auth/drive']
 
-dotenv_path = '../../.env'
+dotenv_path = '.env'
 load_dotenv(dotenv_path)
 
 details = {
-    "refresh_token": os.getenv("REFRESH_TOKEN"),
-    "token": os.getenv("TOKEN"),
+    "refresh_token": os.getenv("NEXT_PUBLIC_REFRESH_TOKEN"),
+    "token": os.getenv("NEXT_PUBLIC_TOKEN"),
     "token_uri": "https://oauth2.googleapis.com/token",
-    "client_id": os.getenv('CLIENT_ID'),
-    "client_secret": os.getenv('CLIENT_SECRET'),
+    "client_id": os.getenv('NEXT_PUBLIC_CLIENT_ID'),
+    "client_secret": os.getenv('NEXT_PUBLIC_CLIENT_SECRET'),
     "scopes": ["https://www.googleapis.com/auth/drive"],
     "universe_domain": "googleapis.com",
     "account": "",
@@ -25,6 +25,7 @@ details = {
 
 def main():
     try:
+        print(details)
         creds = None
         creds = Credentials.from_authorized_user_info(details, SCOPES)
 

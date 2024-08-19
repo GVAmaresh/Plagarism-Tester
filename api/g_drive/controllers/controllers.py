@@ -71,12 +71,13 @@ async def push_file_db(service, file: UploadFile):
         
         file_metadata = {"name": file.filename, "parents": [folder_id]}
         media = MediaIoBaseUpload(io.BytesIO(file_content), mimetype="application/pdf")
-        
+        print("hh1")
         new_file = (
             service.files()
             .create(body=file_metadata, media_body=media, fields="id")
             .execute()
         )
+        print("hh2")
         service.permissions().create(
             fileId=new_file["id"],
             body={"role": "reader", "type": "anyone"},
