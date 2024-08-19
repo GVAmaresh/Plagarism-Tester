@@ -3,6 +3,7 @@ import { initializeApp, FirebaseApp } from "firebase/app";
 import { getAuth, Auth, User as FirebaseAuthUser, AuthProvider, GoogleAuthProvider } from "firebase/auth";
 import { Database, getDatabase } from "firebase/database";
 import { getFirestore, Firestore } from "firebase/firestore";
+import {firebaseConfiguration} from "./config"
 // import { config } from "dote.
 
 // export const firebaseConfig: {
@@ -23,18 +24,9 @@ import { getFirestore, Firestore } from "firebase/firestore";
     //   measurementId: env['MEASUREMENT_ID'] || ''
     // };
     
-export const firebaseConfig = {
-  apiKey: "AIzaSyBQIbwdNN6lTVZoyjPN1Mi7q_bfBgnLR4c",
-  authDomain: "report-analysis-f166b.firebaseapp.com",
-  projectId: "report-analysis-f166b",
-  storageBucket: "report-analysis-f166b.appspot.com",
-  messagingSenderId: "914260330657",
-  appId: "1:914260330657:web:bc5833111907369e01c8e0",
-  measurementId: "G-DCCW358SXM",
-  databaseURL : "https://report-analysis-f166b-default-rtdb.firebaseio.com/"
-};
 
-const firebaseApp: FirebaseApp = initializeApp(firebaseConfig);
+
+const firebaseApp: FirebaseApp = initializeApp(firebaseConfiguration);
 
 export const provider:AuthProvider = new GoogleAuthProvider();
 export const auth: Auth = getAuth(firebaseApp);

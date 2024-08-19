@@ -8,10 +8,10 @@ import {
   User
 } from "firebase/auth";
 import { initializeApp, FirebaseApp } from "firebase/app";
-import { firebaseConfig } from "./firebaseConfig";
+import { firebaseConfiguration } from "./config";
 import { getAuth, Auth, User as FirebaseAuthUser } from "firebase/auth";
 
-const firebaseApp: FirebaseApp = initializeApp(firebaseConfig);
+const firebaseApp: FirebaseApp = initializeApp(firebaseConfiguration);
 
 export const auth: Auth = getAuth(firebaseApp);
 export async function signInOrSignUp({
