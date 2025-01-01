@@ -122,8 +122,6 @@ function AddFiles() {
           throw new Error("Failed to get summary");
         }
         const response_DL_Data = await response_dl.json();
-        console.log(response_DL_Data, response_DL_Data.data.summary);
-        console.log(responseData.data.title);
 
         const newData: Naming = {
           id: responseData.data.file_id || "",
@@ -141,7 +139,6 @@ function AddFiles() {
       }
 
       const response: ApiResult = { data: dataList, success: true };
-      console.log("Final response data:", response.data);
 
       if (response.success) {
         setLoad((prevState) => {

@@ -59,14 +59,11 @@ export default function DeleteReport() {
   }, []);
 
   const handleDelete = () => {
-    console.log(checked);
     setIsClicked(!isClicked);
     DeleteFileAPI(checked).then((data) => {
       if (data.success) {
         setIsClicked(false);
         getDataFirebase().then((data) => {
-          console.log(data);
-          // setData(data);
         });
       }
     });

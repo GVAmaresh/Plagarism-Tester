@@ -24,8 +24,6 @@ export async function signInOrSignUp({
   password: string;
 }): Promise<{ user: User | null; emailVerified: boolean }> {
   try {
-    console.log("Attempting to sign in with:", email, password);
-    console.log("Auth object:", auth);
     let userCredential;
     try{
       userCredential = await signInWithEmailAndPassword(auth, email, password);
@@ -47,7 +45,6 @@ export async function signInOrSignUp({
       return { user: null, emailVerified: false };
     }
 
-    console.log("Signed in successfully:", user);
     if (user) {
       return { user, emailVerified: true };
     } else {
@@ -64,10 +61,8 @@ export async function signInOrSignUp({
           password
         );
         const user = userCredential.user;
-        console.log("User created successfully:", user);
 
         await sendEmailVerification(user);
-        console.log("Email verification sent to:", user.email);
         return { user: null, emailVerified: false };
       } catch (signUpError: any) {
         console.error(

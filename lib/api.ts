@@ -6,13 +6,10 @@ import { v4 as uuidv4 } from "uuid";
 import { handleFile_Drive } from "./api_component";
 
 export const AddFolderAPI = async (files: FormData[]) => {
-  console.log("Check 2: AddFolderAPI called");
   const dataList: any[] = [];
-  console.log("Files received:", files);
 
   try {
     for (const formData of files) {
-      console.log("Processing form data:", formData);
       const data = await handleFile_Drive(formData);
       dataList.push(data);
     }
@@ -40,7 +37,6 @@ export const AddFolderAPI = async (files: FormData[]) => {
         throw new Error("Failed to upload files");
       }
       const data = await response.json();
-      console.log(data);
       return data;
     } catch (error) {
       console.error("Error uploading files:", error);
@@ -69,10 +65,8 @@ const decryptToken = (encryptedToken: string) => {
 
 export const CheckLoginAPI = async () => {
   try {
-    console.log("here");
     let cookie = cookies().get("token");
     let token = cookie ? decryptToken(cookie.value) : uuidv4();
-    console.log(token);
     const response = await fetch(`${URL}/isLogin`, {
       method: "POST",
       body: JSON.stringify({ name: token }),
@@ -84,7 +78,6 @@ export const CheckLoginAPI = async () => {
       throw new Error("Failed to Login");
     }
     const data = await response.json();
-    console.log(data);
     token = encryptToken(token);
     cookies().set("token", token);
     return data;
@@ -108,7 +101,6 @@ export const GetFileAPI = async () => {
       throw new Error("Failed to GET Summary");
     }
     const data = await response.json();
-    console.log(data);
     return data;
   } catch (error) {
     console.error("Error Getting Summary : ", error);

@@ -50,7 +50,6 @@ export default function EachDetails({
 }) {
   const [reload, setReload] = React.useState(false);
   const [isClicked, setIsClicked] = React.useState(false);
-  console.log(data);
 
   const generate = (
     dataItem: Naming | null,

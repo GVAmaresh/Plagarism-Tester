@@ -30,7 +30,6 @@ import { firebaseConfiguration } from "./config";
 //   measurementId: env['MEASUREMENT_ID'] || ''
 // };
 
-console.log(firebaseConfiguration);
 const firebaseApp: FirebaseApp = initializeApp(firebaseConfiguration);
 export const provider: AuthProvider = new GoogleAuthProvider();
 export const auth: Auth = getAuth(firebaseApp);
