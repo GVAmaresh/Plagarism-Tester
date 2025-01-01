@@ -23,6 +23,7 @@ details = {
     "account": "",
 }
 
+
 def main():
     try:
         print(details)

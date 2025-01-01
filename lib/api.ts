@@ -1,12 +1,9 @@
-// http://127.0.0.1:8000
+
 "use server";
 import { cookies } from "next/headers";
 import CryptoJS from "crypto-js";
 import { v4 as uuidv4 } from "uuid"; 
 import { handleFile_Drive } from "./api_component";
-
-const URL_DL = "http://127.0.0.1:4000/api";
-const URL_Drive = "http://127.0.0.1:5000/api";
 
 export const AddFolderAPI = async (files: FormData[]) => {
   console.log("Check 2: AddFolderAPI called");
@@ -61,9 +58,7 @@ const encryptToken = (token: string) => {
   return encryptedToken;
 };
 
-// const URL = process.env.NEXT_PUBLIC_VERCEL_URL
-//   ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api`
-//   : "http://localhost:8000/api";
+
 
 
 const decryptToken = (encryptedToken: string) => {
@@ -71,33 +66,6 @@ const decryptToken = (encryptedToken: string) => {
   const decryptedToken = decryptedBytes.toString(CryptoJS.enc.Utf8);
   return decryptedToken;
 };
-
-// export const AddFolderAPI = async (files: File[]) => {
-//   console.log("Check here 2")
-//   const formData = new FormData();
-//   files.forEach((file) => {
-//     formData.append("files", file);
-//   });
-//   try {
-//     const response = await fetch("http://127.0.0.1:8000/api/upload", {
-//       method: "POST",
-//       body: JSON.stringify(formData),
-//       // headers: {
-//       //   "Content-Type": "application/json",
-//       // },
-
-//     });
-//     if (!response.ok) {
-//       throw new Error("Failed to upload files");
-//     }
-//     const data = await response.json();
-//     console.log(data);
-//     return data;
-//   } catch (error) {
-//     console.error("Error uploading files:", error);
-//     throw error;
-//   }
-// };
 
 export const CheckLoginAPI = async () => {
   try {

@@ -8,6 +8,7 @@ import { monitorAuthState } from "@/services/firebase/auth";
 import Request_Sign from "@/components/account/request_sign";
 import { useRouter } from "next/navigation";
 import {  getDataFirebase } from "@/services/firebase/data";
+import { GDRIVE_URL, ML_URL } from "@/lib/helper";
 
 interface FileInfo {
   name: string;
@@ -48,7 +49,7 @@ function AddFileCompare() {
       const formData = new FormData();
       formData.append("file", files[0]);
 
-      const response = await fetch(`http://127.0.0.1:5000/api/get-abstract`, {
+      const response = await fetch(`${GDRIVE_URL}/get-abstract`, {
         method: "POST",
         body: formData
       });
@@ -56,7 +57,7 @@ function AddFileCompare() {
         throw new Error("Failed to upload files");
       }
       const data = await response.json();
-      console.log(data.data.extracted_text);
+      console.log("Check here= ",data.data.extracted_text);
       if (!data.data.extracted_text) {
         setSummary("None");
         setNewData([]);
@@ -64,7 +65,7 @@ function AddFileCompare() {
       }
 
       const response_summary = await fetch(
-        `http://127.0.0.1:4000/api/summerized`,
+        `${ML_URL}/summerized`,
         {
           method: "POST",
           body: JSON.stringify({
@@ -90,7 +91,7 @@ function AddFileCompare() {
         setSummary(compare_summary);
 
         for (const i of other_summaries) {
-          const response_dl = await fetch(`http://127.0.0.1:4000/api/compare`, {
+          const response_dl = await fetch(`${ML_URL}/compare`, {
             method: "POST",
             body: JSON.stringify({
               summary: compare_summary,

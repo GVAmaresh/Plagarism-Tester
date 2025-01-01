@@ -7,12 +7,12 @@ import { monitorAuthState } from "@/services/firebase/auth";
 import { User } from "@/services/firebase/firebaseConfig";
 import Request_Sign from "@/components/account/request_sign";
 import { useRouter } from "next/navigation";
-import { addData, getData } from "@/services/firebase/data";
+import { addData} from "@/services/firebase/data";
 import Alerts from "@/components/extra_component/alert";
 import SubtitlesIcon from '@mui/icons-material/Subtitles';
 import SubtitlesOffIcon from '@mui/icons-material/SubtitlesOff';
 import Button from '@mui/material/Button';
-import { Load_Drive } from "@/lib/helper";
+import { GDRIVE_URL, Load_Drive, ML_URL } from "@/lib/helper";
 
 interface FileInfo {
   name: string;
@@ -82,7 +82,7 @@ function AddFiles() {
     setHandleError(true)
     try {
       for (const formData of formDataArray) {
-        const response = await fetch(`http://127.0.0.1:5000/api/save-docs`, {
+        const response = await fetch(`${GDRIVE_URL}/save-docs`, {
           method: "POST",
           body: formData
         });
@@ -107,7 +107,7 @@ function AddFiles() {
         }
 
         const response_dl = await fetch(
-          "http://127.0.0.1:4000/api/summerized",
+          `${ML_URL}/summerized`,
           {
             method: "POST",
             headers: {

@@ -1,5 +1,5 @@
-const URL_DL = "http://127.0.0.1:4000/api";
-const URL_Drive = "http://127.0.0.1:5000/api";
+import { GDRIVE_URL } from "./helper";
+const URL_Drive = GDRIVE_URL;
 
 export const handleFile_Drive = async (formData: FormData) => {
   console.log("FormData:", formData);
